@@ -1,10 +1,18 @@
 public class Checkers {
-    protected int posX;
-    protected int posY;
+    private int posX;
+    private int posY;
+    private boolean active = false;
+    boolean isWhite;
 
-    public Checkers(int posX, int posY) {
+    public Checkers(int posX, int posY,boolean isWhite) {
         setPosX(posX);
         setPosY(posY);
+        this.active = true;
+        this.isWhite = isWhite;
+    }
+
+    public Checkers(){
+
     }
 
     public int getPosX() {
@@ -23,14 +31,15 @@ public class Checkers {
 
     @Override
     public String toString() {
-        return "Checkers{" +
-                "posX=" + posX +
-                ", posY=" + posY +
-                '}';
+        return String.format(" O  ");
     }
 
     public void move(int x, int y){
-        if (Math.abs(posX - x) == Math.abs(posY - y) && (x != posX) && (y != posY)) {
+        int diffX = this.posX - x;
+        int diffY = this.posY - y;
+
+        int aux = x+y;
+        if ( (diffX!=0 && diffY != 0) && (aux == Math.abs(2) || aux ==0) ) {
             setPosY(y);
             setPosX(x);
             System.out.println("move setted");
